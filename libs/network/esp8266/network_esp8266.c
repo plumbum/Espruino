@@ -363,7 +363,8 @@ bool esp8266_wait_for(const char *text, int milliseconds, bool justTheStart) {
 
 
 bool net_esp8266_initialise(JsVar *callback) {
-  JsVar *cmd = jsvNewFromString("AT+CWJAP=\"\",\"\"\r\n");
+  // JsVar *cmd = jsvNewFromString("AT+CWJAP=\"\",\"\"\r\n");
+  JsVar *cmd = jsvNewFromString("AT+CWQAP\r\n"); // Fix from http://forum.espruino.com/conversations/262855/
   esp8266_send(cmd);
   jsvUnLock(cmd);
   net_esp8266_setState(ESP8266_WAIT_OK_THEN_CWMODE_THEN_RESET_THEN_READY_THEN_CIPMUX, 500, callback, "No Acknowledgement");
