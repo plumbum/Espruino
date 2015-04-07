@@ -1133,6 +1133,11 @@ void jshInit() {
 
   jshResetSerial();
 
+#ifdef HOME_POWER_CTRL
+  // reclaim A13 and A14
+  GPIO_PinRemapConfig(GPIO_Remap_SWJ_JTAGDisable, ENABLE); // Disable JTAG so pins are available for LEDs
+#else
+
 #ifdef STM32F1
 #ifndef DEBUG
   // reclaim B3, B4, A13 and A14
@@ -1143,6 +1148,8 @@ void jshInit() {
 
   GPIO_PinRemapConfig(GPIO_Remap_SWJ_Disable, ENABLE); // Disable JTAG/SWD so pins are available for LEDs
 #endif
+#endif
+
 #endif
 
   NVIC_InitTypeDef NVIC_InitStructure;
