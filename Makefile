@@ -200,6 +200,15 @@ BOARD=MAPLEMINI
 STLIB=STM32F10X_MD
 PRECOMPILED_OBJS+=$(ROOT)/targetlibs/stm32f1/lib/startup_stm32f10x_md.o
 OPTIMIZEFLAGS+=-Os # short on program memory
+
+else ifdef STM32F103CB
+EMBEDDED=1
+SAVE_ON_FLASH=1
+BOARD=STM32F103CB
+STLIB=STM32F10X_MD
+PRECOMPILED_OBJS+=$(ROOT)/targetlibs/stm32f1/lib/startup_stm32f10x_md.o
+OPTIMIZEFLAGS+=-Os # short on program memory
+
 else ifdef EMBEDDED_PI
 EMBEDDED=1
 BOARD=EMBEDDED_PI
